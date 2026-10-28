@@ -106,6 +106,13 @@ scripts/             Build helpers and catalog import tools
 tests/               Calculation, editing, backup and catalog tests
 ```
 
+## Possible future features
+
+These ideas are under consideration and are not available in the current beta. Scope and timing may change.
+
+- **Optional health reminders:** Use published research and public-health guidance, with clearly cited sources, to inform gentle reminders when the previous day's logged alcohol intake is high. Reminder criteria would be reviewed before implementation, and users would be able to turn reminders off. These would support awareness, not provide a diagnosis or define a risk-free drinking amount.
+- **Optional community features:** A separate space for sharing experiences, moods, occasions and photos. Sharing would be voluntary, with privacy and moderation considered before launch; everyday drink logging would remain simple and independent of the community.
+
 ## Credits
 
 **Product of Imagine Snow.**
