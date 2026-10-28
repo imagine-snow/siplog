@@ -4,6 +4,8 @@ English · [中文](README.zh-CN.md)
 
 SipLog is a local-first drinking journal for recording what you drink, how much is left in a bottle, and your spending over time. The interface follows a simple expense-tracker workflow: choose a drink, confirm its size, record the amount, and save.
 
+SipLog is intended to help people record and visualize their drinking habits. It does not encourage drinking or increasing alcohol consumption.
+
 This repository preserves **v0.5.3, the first friends-and-family beta**. It contains application source, tests, documentation and a reusable catalog snapshot. Personal drinking records and local test backups are not included.
 
 [Open the web app](https://jiuji-drink-log.imagine-snow.chatgpt.site/) · [Release notes](CHANGELOG.md) · [Data sources](DATA_SOURCES.md)
