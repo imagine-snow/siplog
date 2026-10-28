@@ -1,0 +1,28 @@
+'use client';
+import {useMemo,useState,type ReactNode} from 'react';
+import {cabinetSections} from '../lib/cabinet';
+import {drinkName} from '../lib/drink-names';
+import {normalize} from '../lib/drinks';
+import {remaining,type Bottle,type Category,type Ledger} from '../lib/model';
+import {useI18n} from '../lib/i18n';
+
+export function Cabinet({data,art,onAdd,onBottle,onDrink}:{data:Ledger;art:(category:Category,level:number,photo?:string)=>ReactNode;onAdd:()=>void;onBottle:(b:Bottle)=>void;onDrink:(id:string)=>void}){
+  const {tr,t,lang}=useI18n();const [search,setSearch]=useState('');const [favorites,setFavorites]=useState(false);const [expanded,setExpanded]=useState(false);const [openLimit,setOpenLimit]=useState(12);const [archiveLimit,setArchiveLimit]=useState(12);
+  const sections=useMemo(()=>cabinetSections(data),[data]);
+  const words=normalize(search).split(' ').filter(Boolean);
+  const matches=(p:{name:string;brand:string;category:Category},favorite:boolean)=> (!favorites||favorite)&&words.every(w=>normalize([p.name,drinkName(p),p.brand,p.category,t(p.category)].join(' ')).includes(w));
+  const active=sections.open.filter(b=>matches(b,b.favorite));const archive=sections.archived.filter(d=>matches(d.product,d.favorite));
+  const showArchive=expanded||search.trim()!==''||favorites;
+  function searchChanged(text:string){setSearch(text);setOpenLimit(12);setArchiveLimit(12);}
+  return <div className="page-enter cabinet-page"><div className="page-heading heading-inline"><div><p className="eyebrow">YOUR OWN LITTLE SHELF</p><h1>{t('我的电子酒柜')}</h1><p>{tr('手边的酒，先放在眼前。','The bottles you are enjoying, within reach.')}</p></div><button className="button primary" onClick={onAdd}>＋ {t('添一瓶酒')}</button></div>
+    <div className="cabinet-toolbar"><label className="cabinet-search"><span aria-hidden="true">⌕</span><input aria-label={tr('搜索我的酒柜','Search my cabinet')} value={search} onChange={e=>searchChanged(e.target.value)} placeholder={tr('在自己的酒柜里找一找','Find a drink in your cabinet')}/>{search&&<button aria-label={tr('清空酒柜搜索','Clear cabinet search')} onClick={()=>searchChanged('')}>×</button>}</label><button className={`cabinet-favorites ${favorites?'selected':''}`} aria-pressed={favorites} onClick={()=>{setFavorites(v=>!v);setArchiveLimit(12);setOpenLimit(12);}}>☆ {tr('收藏','Favorites')}</button></div>
+    <section className="active-shelf"><div className="shelf-heading"><h2>{tr('正在喝','Open bottles')} <span>{active.length}</span></h2><p>{tr('按最近记录排序 · 点酒瓶继续记','Recently used first · tap a bottle to continue')}</p></div>
+      {active.length?<div className="cabinet-grid shelf-grid">{active.slice(0,openLimit).map(b=><button className="cabinet-bottle" key={b.id} onClick={()=>onBottle(b)}><div className="cabinet-art">{art(b.category,remaining(data,b),data.covers?.['bottle:'+b.id])}{b.favorite&&<span className="favorite-mark">★</span>}<span className="cabinet-level">{tr('约剩','About')} {remaining(data,b)}%</span></div><span className="category-tag">{t(b.category)} · {b.abv}%</span><h3>{drinkName(b,lang)}</h3><p>{b.capacity} ml</p><div className="mini-progress"><span style={{width:`${remaining(data,b)}%`}}/></div></button>)}</div>:<div className="shelf-empty"><p>{search||favorites?tr('没有匹配的在饮酒款。','No matching open bottles.'):tr('手边暂时没有没喝完的酒。','No unfinished bottles right now.')}</p>{!search&&!favorites&&<button className="text-button" onClick={onAdd}>{tr('添一瓶，之后接着记','Add a bottle to start tracking')} →</button>}</div>}
+      {active.length>openLimit&&<button className="button outline full" onClick={()=>setOpenLimit(n=>n+12)}>{tr('再显示 12 瓶','Show 12 more bottles')}</button>}
+    </section>
+    <section className="archive-shelf"><button className="archive-toggle" aria-expanded={showArchive} aria-controls="archived-drinks" onClick={()=>{if(search||favorites){setSearch('');setFavorites(false);setExpanded(false);}else setExpanded(v=>!v);}}><span><strong>{tr('喝完和喝过的','Finished & past drinks')}</strong><small>{tr('空瓶与饮用记录，都留在这里。','Empty bottles and past drinks, kept here.')}</small></span><b>{archive.length}</b><span className="archive-chevron" aria-hidden="true">{showArchive?'−':'＋'}</span></button>
+      {showArchive&&<div id="archived-drinks"><div className="cabinet-grid archive-grid">{archive.slice(0,archiveLimit).map(d=><button className="cabinet-bottle" key={d.key} onClick={()=>d.type==='bottle'?onBottle(d.product as Bottle):onDrink(d.id)}><div className="cabinet-art">{art(d.product.category,0,data.covers?.[d.key])}{d.favorite&&<span className="favorite-mark">★</span>}<span className="cabinet-level">{d.type==='bottle'?tr('已喝完','Finished'):tr('喝过的','Previously logged')}</span></div><span className="category-tag">{t(d.product.category)} · {d.product.abv}%</span><h3>{drinkName(d.product,lang)}</h3><p>{d.product.capacity} ml · {d.date}</p></button>)}</div>{!archive.length&&<p className="shelf-empty">{tr('这里还没有匹配的酒款。','No matching past drinks.')}</p>}{archive.length>archiveLimit&&<button className="button outline full" onClick={()=>setArchiveLimit(n=>n+12)}>{tr('再显示 12 款','Show 12 more drinks')} · {archiveLimit}/{archive.length}</button>}</div>}
+    </section>
+    {data.bottles.some(b=>b.hidden)&&<details className="removed-shelf"><summary>{tr('已移出酒柜','Removed from cabinet')} · {data.bottles.filter(b=>b.hidden).length}</summary><p className="help">{tr('历史记录仍在明细中。点开可以恢复。','History remains in Journal. Tap a bottle to restore it.')}</p>{data.bottles.filter(b=>b.hidden).map(b=><button className="removed-row" key={b.id} onClick={()=>onBottle(b)}><span>{drinkName(b,lang)}<small>{b.capacity} ml · {b.abv}%</small></span><span>{tr('查看 / 恢复','View / restore')} →</span></button>)}</details>}
+  </div>;
+}

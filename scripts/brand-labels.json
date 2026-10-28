@@ -1,0 +1,13 @@
+[
+ {"name":"飞天贵州茅台酒","brand":"贵州茅台","category":"白酒","abv":53,"capacity":500,"origin":"中国 · 贵州","aliases":["Kweichow Moutai Feitian Flying Fairy Maotai"],"url":"https://www.moutai.com.cn/mtjt/2025-12/31/article_2025123121121938437.html"},
+ {"name":"青花汾酒20","brand":"汾酒","category":"白酒","abv":53,"capacity":500,"origin":"中国 · 山西","aliases":["Fenjiu Qinghua 20"],"url":"https://www.fenjiu.com.cn/gf/qinghua/2023-02-08/988.html"},
+ {"name":"青花汾酒20","brand":"汾酒","category":"白酒","abv":42,"capacity":500,"origin":"中国 · 山西","aliases":["Fenjiu Qinghua 20"],"url":"https://www.fenjiu.com.cn/gf/qinghua/2023-02-08/988.html"},
+ {"name":"青花汾酒30","brand":"汾酒","category":"白酒","abv":53,"capacity":500,"origin":"中国 · 山西","aliases":["Fenjiu Qinghua 30"],"url":"https://www.fenjiu.com.cn/gf/fenjiu/index.html"},
+ {"name":"青花汾酒30","brand":"汾酒","category":"白酒","abv":48,"capacity":500,"origin":"中国 · 山西","aliases":["Fenjiu Qinghua 30"],"url":"https://www.fenjiu.com.cn/gf/fenjiu/index.html"},
+ {"name":"青花汾酒30","brand":"汾酒","category":"白酒","abv":42,"capacity":500,"origin":"中国 · 山西","aliases":["Fenjiu Qinghua 30"],"url":"https://www.fenjiu.com.cn/gf/fenjiu/index.html"},
+ {"name":"玻瓶汾酒","brand":"汾酒","category":"白酒","abv":53,"capacity":475,"origin":"中国 · 山西","aliases":["Fenjiu 玻汾 黄盖玻汾"],"url":"https://www.fenjiu.com.cn/gf/fenjiu/index.html"},
+ {"name":"玻瓶汾酒","brand":"汾酒","category":"白酒","abv":48,"capacity":475,"origin":"中国 · 山西","aliases":["Fenjiu 玻汾"],"url":"https://www.fenjiu.com.cn/gf/fenjiu/index.html"},
+ {"name":"玻瓶汾酒","brand":"汾酒","category":"白酒","abv":42,"capacity":475,"origin":"中国 · 山西","aliases":["Fenjiu 玻汾 红盖玻汾"],"url":"https://www.fenjiu.com.cn/gf/fenjiu/index.html"},
+ {"name":"梦之蓝水晶版 Dream Blue Crystal","brand":"洋河 Yanghe","category":"白酒","abv":52,"capacity":null,"origin":"中国","aliases":["梦之蓝 晶彩 水晶 Dream Blue Crystal"],"url":"https://www.yangheglobal.com/mengzhilan-series.html?k=3"},
+ {"name":"梦之蓝水晶版 Dream Blue Crystal","brand":"洋河 Yanghe","category":"白酒","abv":40.8,"capacity":null,"origin":"中国","aliases":["梦之蓝 晶彩 水晶 Dream Blue Crystal"],"url":"https://www.yangheglobal.com/mengzhilan-series.html?k=3"}
+]

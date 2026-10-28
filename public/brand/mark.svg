@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+  <defs><linearGradient id="wine-gold" x1="14" y1="76" x2="150" y2="76" gradientUnits="userSpaceOnUse"><stop stop-color="#71313e"/><stop offset=".57" stop-color="#873f4b"/><stop offset=".67" stop-color="#b57b3d"/><stop offset="1" stop-color="#bf8847"/></linearGradient></defs>
+  <path d="M122 21C111 12 98 8 83 8C66 8 47 14 36 23C27 30 19 44 14 57C9 70 9 78 9 89C11 105 22 120 34 132C48 144 67 149 82 149C100 148 117 143 130 131C143 119 152 102 154 85C155 75 153 65 151 57C150 53 147 52 146 55C144 58 147 65 148 74C151 92 143 110 131 123C119 136 99 141 83 140C79 137 77 142 70 140C54 139 42 131 31 120C22 110 18 98 19 88C15 84 20 79 18 76C19 61 28 45 36 35C39 31 44 32 46 28C56 21 69 15 84 13C95 11 109 15 120 24C123 25 124 23 122 21Z" fill="url(#wine-gold)"/>
+  <circle cx="139" cy="37" r="9.4" fill="#843d49"/>
+</svg>

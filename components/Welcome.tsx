@@ -1,0 +1,8 @@
+'use client';
+import {useState} from 'react';
+import {useI18n} from '../lib/i18n';
+export function Welcome({done}:{done:(start?:boolean)=>void}){
+ const {tr}=useI18n();const [step,setStep]=useState(0);
+ const pages=[{icon:'＋',title:tr('记一笔，只需要几步','A few taps to keep a record'),body:tr('首页点“记录喝酒”，先选酒款，再记数量。没找到自己的酒？直接点“自己添加”。','Tap “Log a drink” on Home. Choose a drink, then the amount. No match? Tap “Add your own”.')},{icon:'✎',title:tr('记错了，去明细里改','Fix mistakes in your journal'),body:tr('底部“明细”按日期列出每次记录，点开就能编辑。喝完的啤酒也在这里；切到“日历”还能看热力图。','Journal lists every saved occasion by date. Tap one to edit, including finished beers. Switch to Calendar for the heatmap.')},{icon:'▤',title:tr('酒柜放酒，记录留在明细','Keep bottles in your cabinet'),body:tr('烈酒拖动余量继续记；在酒柜点开酒瓶，可以移出或恢复。记录存在这个浏览器，“设置”里可以导出备份，也能重看这份指南。','Use the remaining-level slider for spirits. Open a bottle in Cabinet to remove or restore it. Records stay in this browser; Settings has backups and this guide.')}];
+ const p=pages[step];return <div className="welcome"><span className="welcome-icon" aria-hidden="true">{p.icon}</span><p className="eyebrow">{step+1} / 3</p><h3>{p.title}</h3><p>{p.body}</p><div className="welcome-progress" aria-hidden="true">{pages.map((_,i)=><i key={i} className={step===i?'active':''}/>)}</div><button className="button primary full" onClick={()=>step===2?done(true):setStep(s=>s+1)}>{step===2?tr('开始记录','Start logging'):tr('下一步','Next')} →</button><div className="welcome-bottom">{step>0&&<button className="text-button" onClick={()=>setStep(s=>s-1)}>{tr('上一步','Back')}</button>}<button className="text-button" onClick={()=>done()}>{tr('跳过，直接使用','Skip and explore')}</button></div></div>;
+}
